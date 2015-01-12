@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div id="tabs" class="tabs">
+  <nav>
+    <ul>
+      <% @article_categories.each do |category| %>
+      <li><a href="#<%= category.title.downcase.gsub(" ", "_") %>" class="<%= category.icon %>"><span><%= category.title %></span></a></li>
+      <% end %>
+    </ul>
+  </nav>
+  <div class="content">
+    <% @article_categories.each do |category| %>
+    <section id="<%= category.title.downcase.gsub(" ", "_") %>">
+      <% category.articles.each do |article| %>
+      <div class="mediabox">
+        <img src="<%= article.featured_image ? article.featured_image : category.image %>" alt="<%= article.title %>" />
+        <h3><%= article.title %></h3>
+        <p><%= article.short_description %></p>
+      </div>
+      <% end %>
+    </section>
+    <% end %>
+  </div><!-- /content -->
+</div><!-- /tabs -->
